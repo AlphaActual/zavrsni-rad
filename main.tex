@@ -16,6 +16,24 @@
 \usepackage{cite}
 \usepackage{url}       %za URL linkove u bibliografiji
 \usepackage{float}
+\usepackage{hyperref}  %za hiperlinkove - mora biti zadnji
+
+% Konfiguracija hyperref-a za boje i stil linkova
+\hypersetup{
+    colorlinks=true,        % linkovi su obojeni umjesto u okvirima
+    linkcolor=black,         % boja unutarnjih linkova (TOC, reference)
+    citecolor=black,        % boja citata
+    urlcolor=blue,          % boja URL linkova
+    filecolor=magenta,      % boja linkova na datoteke
+    menucolor=red,          % boja linkova na meni
+    breaklinks=true,        % dozvoljava lomljenje linkova preko redaka
+    % bookmarks=true,       % stvara PDF bookmarks (default je true)
+    % bookmarksopen=true,   % otvara bookmark panel
+    % pdfstartview=FitH,    % kako se PDF otvara
+    % pdftitle={Naslov rada},    % naslov PDF-a
+    % pdfauthor={Vaše ime},      % autor PDF-a
+    % pdfsubject={Tema rada},    % tema PDF-a
+}
 
 \begin{document}
 

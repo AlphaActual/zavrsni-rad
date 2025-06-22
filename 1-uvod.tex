@@ -63,7 +63,7 @@ Kod ove strategije iscrtavanja, na klijent se šalje jedan prazan HTML dokument,
 
 \begin{itemize}
     \item Početna brzina učitavanja – iako je aplikacija generalno brža nakon početnog učitavanja JavaScripta, prvo učitavanje kada korisnik posjeti stranicu može biti znatno sporije zbog potrebe da se učita i izvrši sav potreban JavaScript kod prije iscrtavanja sadržaja. Ovo ograničenje posebno dolazi do izražaja prilikom učitavanja na sporijim mrežama.
-    \item Lošiji SEO – iako današnji pretraživači\\footnote{Eng. crawler – automatizirani robot koji tražilica koristi za istraživanje, pronalazak i indeksiranje web stranica \cite{googlesearch}} mogu očitati i stranice iscrtane ovom strategijom, primarno su optimizirani su za čitanje statičnog HTML-a. Zbog ovog nedostatka, ova se strategija se sve manje koristi za web aplikacije kod kojih je važan dobar SEO.
+    \item Lošiji SEO – iako današnji pretraživači\footnote{Eng. crawler – automatizirani robot koji tražilica koristi za istraživanje, pronalazak i indeksiranje web stranica \cite{googlesearch}} mogu očitati i stranice iscrtane ovom strategijom, primarno su optimizirani su za čitanje statičnog HTML-a. Zbog ovog nedostatka, ova se strategija se sve manje koristi za web aplikacije kod kojih je važan dobar SEO.
     \item Lošije performanse na slabijim uređajima – zbog činjenice da je potrebno najprije izvršiti JavaScript kod na strani klijenta, kod slabijih i starijih uređaja može doći do usporavanja učitavanja i pada performansi.
     \item Manjak podrške za korisnike koji nisu omogućili JavaScript u pregledniku – bez JavaScripta sadržaj stranice se ne može iscrtati.
 \end{itemize}
@@ -203,7 +203,7 @@ Npr. Next.js generira statične stranice za dinamične rute prilikom vremena izg
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{slike/pregled-strategija-iscrtavanja.jpg}
-    \caption{Pregled strategija iscrtavanja u Next.js programskom okviru}
+    \caption{Pregled strategija iscrtavanja u Next.js programskom okviru\cite{dumais2021nextjs}}
     \label{fig:pregled-strategija-iscrtavanja}
 \end{figure}
 
