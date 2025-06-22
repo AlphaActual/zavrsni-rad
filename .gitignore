@@ -230,3 +230,6 @@ Thumbs.db
 
 # MiKTeX
 *.auxlock
+
+# LaTeX SyncTeX files
+*.synctex.gz
