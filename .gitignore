@@ -233,3 +233,4 @@ Thumbs.db
 
 # LaTeX SyncTeX files
 *.synctex.gz
+*.synctex.gz.sum.synctex
