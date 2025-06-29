@@ -2,15 +2,11 @@
 
 \subsection{Opis referentne aplikacije}
 
-Za potrebe testiranja performansi različitih programskih okvira kroz različite strategije iscrtavanja bilo je potrebno napraviti demo aplikaciju koja bi bila dovoljno reprezentativna, ali ne presložena, te bi uključivala stranice sa statičnim i dinamičnim sadržajem.
+Za potrebe testiranja performansi različitih programskih okvira kroz različite strategije iscrtavanja bilo je potrebno napraviti demo aplikaciju koja bi bila reprezentativna, ali ne presložena, te bi uključivala stranice sa statičnim i dinamičnim sadržajem.
 
 \bigskip
 
-Predstavnik statične stranice je stranica „o nama“. Ovakve stranice najčešće koriste statičan sadržaj koji se vrlo rijetko mijenja, te često čine dio web aplikacija raznih tvrtki.
-
-\bigskip
-% TODO fix here
-Za dinamični dio stranice kreirane su stranica bloga, također popularnog sadržaja na webu.
+Predstavnik statične stranice je stranica „O nama“. Ovakve stranice najčešće koriste statičan sadržaj koji se vrlo rijetko mijenja, te često čine dio web aplikacija raznih tvrtki. Dinamični dio predstavljaju stranice bloga, također popularnog sadržaja na webu.
 
 \bigskip
 
@@ -29,16 +25,17 @@ Za font je korišten Google font obitelji Archivo. Sve slike osim open graph sik
     \label{fig:prikaz-blog-stranice}
 \end{figure}
 
-\subsection{Implementacija u Programskim Okvirima}
+\subsection{Implementacija u programskim okvirima}
+Work in progress
 % TODO ovo poglavlje napisati
 
-\subsection{Mjerene Metrike Performansi}
+\subsection{Mjerene metrike Performansi}
 
-Za mjerenje performansi aplikacije odabrane su standardne metrike poznate pod nazivom Web vitals nastale na Googleovu inicijativu kako bi se standardiziralo mjerenje performansi i dobio bolji uvid u korisničko iskustvo. Osim glavnih metrika u istraživanje su uključene i dodatne metrike poput vremena izgradnje i veličine JavaScript paketa koji se dostavlja klijentu.
+Za mjerenje performansi aplikacije odabrane su standardne metrike poznate pod nazivom Web vitals nastale na Googleovu inicijativu kako bi se standardiziralo mjerenje performansi i dobio bolji uvid u korisničko iskustvo. Osim glavnih metrika u istraživanje su uključene i dodatne metrike poput vremena izgradnje, vremena skriptiranja i veličine JavaScript paketa koji se dostavlja klijentu. Slijedi kratak pregled svih korištenih metrika.
 
 \subsubsection{Iscrtavanje najvećeg sadržaja (LCP)}
 
-LCP, odnosno „Largest Contentful Paint“, mjeri koliko je vremena potrebno da se na stranici prikaže njen najveći vidljivi element. Proteklo vrijeme do 2,5 sekundi smatra se dobrim pokazateljem performansi. U obzir se uzima samo onaj dio elementa koji korisnik može vidjeti – dijelovi koji su odrezani ili nisu vidljivi se zanemaruju. Tijekom učitavanja stranice, koje se često odvija u nekoliko koraka, taj najveći element može se promijeniti. Prvo se zabilježi vrijeme učitavanja tada najvećeg elementa, a ako se kasnije pojavi još veći, mjeri se vrijeme učitavanja novog elementa. Kada korisnik počne koristiti stranicu, preglednik prestaje pratiti nove elemente jer interakcije mogu promijeniti ono što je vidljivo. LCP se zato koristi kao pokazatelj trenutka kada je glavni sadržaj stranice postao dostupan korisniku. \cite{nordstrom2023comparison}
+LCP, odnosno „Largest Contentful Paint“, mjeri koliko je vremena potrebno da se na stranici prikaže njen najveći vidljivi element. Proteklo vrijeme do 2,5 sekunde smatra se dobrim pokazateljem performansi. U obzir se uzima samo onaj dio elementa koji korisnik može vidjeti – dijelovi koji su odrezani ili nisu vidljivi se zanemaruju. Tijekom učitavanja stranice, koje se često odvija u nekoliko koraka, taj najveći element može se promijeniti. Prvo se zabilježi vrijeme učitavanja tada najvećeg elementa, a ako se kasnije pojavi još veći, mjeri se vrijeme učitavanja novog elementa. Kada korisnik počne koristiti stranicu, preglednik prestaje pratiti nove elemente jer interakcije mogu promijeniti ono što je vidljivo. LCP se zato koristi kao pokazatelj trenutka kada je glavni sadržaj stranice postao dostupan korisniku. \cite{nordstrom2023comparison}
 
 \subsubsection{Ukupno vrijeme blokiranja (TBT)}
 
@@ -50,11 +47,11 @@ Pomicanje sadržaja na web stranici tijekom njenog učitavanja naziva se  pomak 
 
 \subsubsection{Vrijeme do interaktivnosti (TTI)}
 
-Ova metrika označava koliko je vremena potrebno da web stranica postane potpuno interaktivna. To znači da se prvo prikaže koristan sadržaj (što mjeri FCP), zatim da stranica reagira na korisničke radnje u roku kraćem od 50 milisekundi te da su većina upravljača događaja ( engl. event handler) učitana i spremna. Vrijeme kraće od 3,8 sekundi smatra se dobrim rezultatom. Spor TTI često je uzrokovan loše optimiziranim JavaScript kodom. \cite{nordstrom2023comparison}
+Ova metrika označava koliko je vremena potrebno da web stranica postane potpuno interaktivna. To znači da se prvo prikaže koristan sadržaj (što mjeri FCP), zatim da stranica reagira na korisničke radnje u roku kraćem od 50 milisekundi te da je većina upravljača događaja (engl. event handler) učitana i spremna. Vrijeme kraće od 3,8 sekundi smatra se dobrim rezultatom. Spor TTI često je uzrokovan loše optimiziranim JavaScript kodom. \cite{nordstrom2023comparison}
 
 \subsubsection{Vrijeme do prvog bajta (TTFB)}
 
-Vrijeme do prvog bajta označava koliko vremena prođe od trenutka kada preglednik pošalje zahtjev prema serveru do trenutka kada primi prvi bajt povratnog odgovora. Ova metrika prikazuje koliko brzo se uspostavlja veza i kako brzo server reagira, uključujući sve faze poput preusmjeravanja, DNS rezolucije, TLS dogovora i slanja zahtjeva. Niža vrijednost TTFB-a znači da se stranica učitava brže, što pozitivno utječe i na ostale važne metrike poput FCP-a .Idealno bi bilo da TTFB ostane ispod 0,8 sekundi radi optimalnog korisničkog iskustva. \cite{pollardttfb}
+Vrijeme do prvog bajta označava koliko vremena prođe od trenutka kada preglednik pošalje zahtjev prema serveru do trenutka kada primi prvi bajt povratnog odgovora. Ova metrika prikazuje koliko brzo se uspostavlja veza i koliko brzo server reagira, uključujući sve faze poput preusmjeravanja, DNS rezolucije, TLS dogovora i slanja zahtjeva. Niža vrijednost TTFB-a znači da se stranica učitava brže, što pozitivno utječe i na ostale važne metrike poput FCP-a. Idealno bi bilo da TTFB ostane ispod 0,8 sekundi radi optimalnog korisničkog iskustva. \cite{pollardttfb}
 
 \subsubsection{Dodatne metrike}
 
@@ -66,17 +63,17 @@ Vrijeme do prvog bajta označava koliko vremena prođe od trenutka kada pregledn
 
 \subsection{Alati i testno okruženje}
 
-\subsubsection{LightHouse}
+\subsubsection{Lighthouse}
 
-Glavni i de facto standard za testiranje performansi web aplikacija je Googleov alat otvorenog koda naziva Lighthouse. Ovaj alat integriran je u Chrome preglednik, ali i dostupan kao zasebna CLI aplikacija. Pruža sve što je potrebno za provođenje testova performansi i SEO-a i generiranje izvještaja u različitim formatima, što ga čini lakim za korištenje i vrlo korisnim u unapređivanju tehničke strane web aplikacija i korisničkog iskustva. \cite{googlelighthouse}
+Glavni i de facto standard za testiranje performansi web aplikacija je Googleov alat otvorenog koda imena Lighthouse. Ovaj alat integriran je u Chrome preglednik, ali i dostupan kao zasebna CLI aplikacija. Pruža sve što je potrebno za provođenje testova performansi i SEO-a i generiranje izvještaja u različitim formatima, što ga čini vrlo funkcionalnim i korisnim u unapređivanju tehničke strane web aplikacija i korisničkog iskustva. \cite{googlelighthouse}
 
 \subsubsection{Chrome DevTools}
 
-Chrome DevTools je set alata unutar Chrome preglednika koji između ostalog omogućuju analizu performansi web stranice. U kontekstu ovog rada najvažniji su paneli "Performance" i "Network" koji prikazuju brzinu učitavanja stranice i resursa. Ključna funkcionalnost je Performance Insights, koja snima korisničku sesiju i bilježi metrike poput FCP i LCP. Ovaj alat korišten je u analizi veličine JavaScript paketa koje klijent preuzima i izvršava. \cite{nordstrom2023comparison}
+Chrome DevTools je set alata unutar Chrome preglednika koji između ostalog omogućuju analizu performansi web stranice. U kontekstu ovog rada najvažniji su paneli Performance i Network koji prikazuju brzinu učitavanja stranice i resursa. Ključna funkcionalnost je Performance Insights, koja snima korisničku sesiju i bilježi metrike poput FCP i LCP. Ovaj alat korišten je u analizi veličine JavaScript paketa koje klijent preuzima i izvršava. \cite{nordstrom2023comparison}
 
-\subsubsection{LightHouse reporter}
+\subsubsection{Lighthouse reporter}
 
-Za potrebe ovog rada bilo je potrebno izvesti 360 Lighthouse testova\footnote{3 aplikacije * 4 strategije iscrtavanja * 10 testova po kombinaciji * 3 podstranice (about, blog, blog detalji)} te prikupljene podatke obraditi, grupirati i sumirati (izraditi master tablice sa prosječnim vrijednostima). Zbog opsežnosti testiranja jedini praktični način bilo je napraviti Node.js skriptu koja će na temelju definiranih parametara koristeći Lighthouse CLI alat izvršiti sve testove i generirati datoteke s rezultatima u CSV formatu za daljnju analizu podataka.
+Za potrebe ovog rada bilo je potrebno izvesti 360 Lighthouse testova\footnote{3 aplikacije * 4 strategije iscrtavanja * 10 testova po kombinaciji * 3 podstranice (about, blog, blog detalji)} te prikupljene podatke obraditi, grupirati i sažeti (izraditi master tablice sa prosječnim vrijednostima). Zbog opsežnosti testiranja jedini praktični način bilo je napraviti Node.js skriptu koja će na temelju definiranih parametara koristeći Lighthouse CLI alat izvršiti sve testove i generirati datoteke s rezultatima u CSV formatu za daljnju analizu podataka.
 Aplikacija za testiranje sastoji se od 3 ključna dijela:
 \begin{enumerate}
     \item konfiguracijske JSON datoteke u kojoj su definirani svi parametri testiranja
@@ -89,7 +86,7 @@ Aplikacija za testiranje stavlja korisniku na raspolaganje raznovrstan set testo
 \bigskip
 
 Primjer naredbe u bash terminalu:
-\texttt{node cli.js all slow3g blog}
+\texttt{node cli.js all slow4g blog}
 
 Ova naredba pokreće cli.js skriptu koja testira blog podstranicu u svim aplikacijama u konfiguraciji slow4g.
 
@@ -105,7 +102,7 @@ Za daljnju analizu korištene su 3 datoteke glavnih sažetaka za svaku stranicu.
 
 \bigskip
 
-Zbog velikog broja provedenih testiranja, bilo je nužno osigurati njihovu potpunu uspješnost i cjelovitost podataka. U tu svrhu u skriptu je ugrađen i mehanizam provjere uspješnosti testiranja, koji će u slučaju neuspješnog testa pokušati ponoviti test još dva puta, te ako ni tada ne uspije, naznačiti će gdje je došlo do greške i pokušati nastaviti s testiranjem. Po završetku izvršavanja test skripte moguće je ponovno inicirati izvođenje neuspješnih testova.
+Zbog velikog broja provedenih testova, bilo je nužno osigurati njihovu potpunu uspješnost i cjelovitost podataka. Za tu svrhu u skriptu je ugrađen i mehanizam provjere uspješnosti testiranja, koji će u slučaju neuspješnog testa pokušati ponoviti test još dva puta, te ako ni tada ne uspije, naznačiti će gdje je došlo do greške i pokušati nastaviti s testiranjem. Po završetku izvršavanja test skripte moguće je ponovno inicirati izvođenje neuspješnih testova.
 
 \bigskip
 
@@ -124,11 +121,11 @@ Izvorni kod skripte, zajedno sa dobivenim rezultatima dostupan je na autorovom G
 
 \subsubsection{Testno okruženje}
 
-Kako bi se osigurala konzistentnost pri testiranju i simulacija stvarnih uvjeta u kojima se korisnici nalaze kada koriste web aplikacije, te podrška određenih strategija iscrtavanja (poput ISR-a) odabran je slijedeći pristup.
+Kako bi se osigurali konzistentni uvjeti testiranja koji odgovaraju stvarnom korisničkom iskustvu, te omogućila podrška za specifične strategije iscrtavanja (kao što je ISR), odabran je sljedeći pristup.
 
 \bigskip
 
-Sve aplikacije postavljene su na platformu Vercel koja u trenutku pisanja ovog rada jedina podržava sve odabrane strategije iscrtavanja za svaki od odabranih programskih okvira. Ovo osigurava maksimalnu kompatibilnost i integraciju bez kompliciranih konfiguracija.\cite{vercelframeworks}
+Sve aplikacije postavljene su na platformu Vercel koja u trenutku pisanja ovog rada jedina podržava sve odabrane strategije iscrtavanja za svaki od prethodno navedenih programskih okvira. Ovo osigurava maksimalnu kompatibilnost i integraciju bez kompliciranih konfiguracija.\cite{vercelframeworks}
 
 \bigskip
 
