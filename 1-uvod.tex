@@ -1,6 +1,6 @@
-\section{Uvod}
+\section{Strategije iscrtavanja}
 
-U današnjoj industriji razvoja web aplikacija, više nego ikada prije, izražena je težnja za postizanjem sve većih performansi, skalabilnosti i boljeg korisničkog iskustva. Ta potreba potaknula je istraživanje i razvoj novih rješenja kao odgovor na pitanje kako najoptimalnije i najbrže dostaviti web sadržaj korisniku. Važni čimbenici u odgovoru na ovo pitanje su upravo odabir odgovarajuće strategije iscrtavanja web aplikacije s obzirom na vrstu sadržaja, te programski okvir na kojem se temelji aplikacija. Web aplikacije uvelike su evoluirale od starog pristupa serviranja statičnih stranica do današnjih vrlo interaktivnih dinamičnih aplikacija koje zahtijevaju sofisticirane pristupe dostavljanja i prikazivanja sadržaja krajnjem korisniku. \cite{moore2024rendering} Tradicionalne metode iscrtavanja poput iscrtavanja na serveru (SSR) i generiranja statičnih stranica (SSG) već duže vrijeme čine temelj i osnovni standard u razvoju web aplikacija. Povećanje kompleksnosti aplikacija i potreba za sve višim performansama rezultirali su i nastankom novih hibridnih metoda iscrtavanja poput inkrementalne statičke generacije (ISR).
+U današnjoj industriji razvoja web aplikacija, više nego ikada prije, izražena je težnja za postizanjem sve većih performansi, skalabilnosti i boljeg korisničkog iskustva. Ta potreba potaknula je istraživanje i razvoj novih rješenja kao odgovor na pitanje kako najoptimalnije i najbrže dostaviti web sadržaj korisniku. Važni čimbenici u odgovoru na ovo pitanje su upravo odabir odgovarajuće strategije iscrtavanja web aplikacije s obzirom na vrstu sadržaja, te programski okvir na kojem se temelji aplikacija. Web aplikacije uvelike su evoluirale od starog pristupa serviranja statičnih stranica do današnjih vrlo interaktivnih dinamičnih aplikacija koje zahtijevaju sofisticirane pristupe dostavljanja i prikazivanja sadržaja krajnjem korisniku \cite{moore2024rendering}. Tradicionalne metode iscrtavanja poput iscrtavanja na serveru (SSR) i generiranja statičnih stranica (SSG) već duže vrijeme čine temelj i osnovni standard u razvoju web aplikacija. Povećanje kompleksnosti aplikacija i potreba za sve višim performansama rezultirali su i nastankom novih hibridnih metoda iscrtavanja poput inkrementalne statičke generacije (ISR).
 
 \bigskip
 
@@ -28,23 +28,22 @@ Kako bi rezultati bili reprezentativni i usporedivi sa svakodnevnim korisničkim
 
 Ovo istraživanje nastoji pružiti bolji uvid u trenutne mogućnosti iscrtavanja koje su dostupne web developerima, te im time pomoći u donošenju boljih odluka pri odabiru programskog okvira i strategije iscrtavanja za svoju web aplikaciju. Prvi dio rada baviti će se pregledom najpopularnijih strategija iscrtavanja i programskih okvira, a drugi dio prezentacijom i analizom dobivenih rezultata, raspravom te zaključnim razmatranjima.
 
-\subsection{Strategije iscrtavanja}
 
-Pojam strategije iscrtavanja odnosi se na proces pretvaranja koda u vizualni sadržaj koji korisnik može vidjeti i s kojim može vršiti interakciju kroz web preglednik. \cite{moore2024rendering} Ovaj proces utječe na korisničko iskustvo određujući koliko brzo će se sadržaj prikazati korisniku i koliko će aplikacija biti prilagodljiva i dinamična.
-Odabir strategije iscrtavanja također bitno utječe i na SEO tj. vidljivost kod pretraživanja internetskim tražilicama. \cite{bratslavsky2025rendering}
+Pojam strategije iscrtavanja odnosi se na proces pretvaranja koda u vizualni sadržaj koji korisnik može vidjeti i s kojim može vršiti interakciju kroz web preglednik \cite{moore2024rendering}. Ovaj proces utječe na korisničko iskustvo određujući koliko brzo će se sadržaj prikazati korisniku i koliko će aplikacija biti prilagodljiva i dinamična.
+Odabir strategije iscrtavanja također bitno utječe i na SEO tj. vidljivost kod pretraživanja internetskim tražilicama \cite{bratslavsky2025rendering}.
 
 \bigskip
 
 Moderne SPA aplikacije najčešće  podržavanju različite strategije iscrtavanja, a određene platforme poput Vercela i
 Netlifyja pružaju dodatnu podršku popularnim programskim okvirima, olakšavajući njihovu konfiguraciju i integraciju. Slijedi kratak pregled strategija iscrtavanja obrađenih u ovom radu.
 
-\subsubsection{Iscrtavanje na strani klijenta (CSR)}
+\subsection{Iscrtavanje na strani klijenta (CSR)}
 
 Ova metoda iscrtavanja nastala je još početkom 21. stoljeća razvojem programskih okvira poput AngularJS-a, Reacta i Vuea kada je nastao veliki prijelaz u industriji sa monolitne web arhitekture na tzv. jednostranične aplikacije (SPA) koje se za ažuriranje sučelja, navigaciju i dohvaćanje podataka oslanjaju na JavaScript kod koji se izvršava u pregledniku.
 
 \bigskip
 
-Kod ove strategije iscrtavanja, na klijent se šalje jedan prazan HTML dokument, zajedno sa svim drugim resursima (CSS i JavaScript paketi). Umjesto da je sav sadržaj već unesen u HTML dokument i odmah spreman za prikazivanje u pregledniku, preglednik najprije mora pričekati da se preuzme sav potreban JavaScript kod, te se njegovim izvršavanjem HTML dokument ispunjava elementima koji će se prikazati. Kod navigacije između stranica, ne dolazi do dohvaćanja novog HTML dokumenta, već JavaScript ažurira postojeći HTML novim sadržajem oslanjajući se na AJAX i XML. Time se izbjegavaju ponovna učitavanja koja usporavaju rad aplikacije i štede mrežne resurse. \cite{beran2023usporedba}
+Kod ove strategije iscrtavanja, na klijent se šalje jedan prazan HTML dokument, zajedno sa svim drugim resursima (CSS i JavaScript paketi). Umjesto da je sav sadržaj već unesen u HTML dokument i odmah spreman za prikazivanje u pregledniku, preglednik najprije mora pričekati da se preuzme sav potreban JavaScript kod, te se njegovim izvršavanjem HTML dokument ispunjava elementima koji će se prikazati. Kod navigacije između stranica, ne dolazi do dohvaćanja novog HTML dokumenta, već JavaScript ažurira postojeći HTML novim sadržajem oslanjajući se na AJAX i XML. Time se izbjegavaju ponovna učitavanja koja usporavaju rad aplikacije i štede mrežne resurse \cite{beran2023usporedba}.
 
 \bigskip
 
@@ -77,7 +76,7 @@ S obzirom na navedene prednosti i nedostatke ova strategija iscrtavanja najbolja
 \end{itemize}
 \vfill
 
-\subsubsection{Iscrtavanje na strani poslužitelja (SSR)}
+\subsection{Iscrtavanje na strani poslužitelja (SSR)}
 
 Kako bi se uklonili nedostatci koje sa sobom nosi iscrtavanje na strani klijenta, razvila se nova popularna strategija iscrtavanja – iscrtavanje na strani poslužitelja (engl. server). Ova strategija se naizgled vraća korak prema dobro poznatom i prvobitnom načinu iscrtavanja – iscrtavanju na poslužitelju i višestraničnoj web aplikaciji (MPA) kakve su postojale od začetaka Interneta.
 
@@ -87,11 +86,11 @@ No moderni programski okviri poput Nuxta i SvelteKita spajaju SSR i CSR na nači
 
 \bigskip
 
-Next.js programski okvir u novijim verzijama koristi tzv. iscrtavanje na strani poslužitelja u stvarnom vremenu (Streaming SSR). U ovom načinu rada, na serveru se postupno iscrtavaju zasebni dijelovi HTML dokumenta po redoslijedu kako podaci postaju dostupni i takav dokument se odmah šalje pregledniku na prikaz. Ovime se nastoji izbjeći nedostatak klasičnog SSR-a a to je čekanje na poslužitelj da generira cijeli HTML dokument prije nego ga pošalje klijentu.  \cite{nextjsloading}
+Next.js programski okvir u novijim verzijama koristi tzv. iscrtavanje na strani poslužitelja u stvarnom vremenu (Streaming SSR). U ovom načinu rada, na serveru se postupno iscrtavaju zasebni dijelovi HTML dokumenta po redoslijedu kako podaci postaju dostupni i takav dokument se odmah šalje pregledniku na prikaz. Ovime se nastoji izbjeći nedostatak klasičnog SSR-a a to je čekanje na poslužitelj da generira cijeli HTML dokument prije nego ga pošalje klijentu \cite{nextjsloading}.
 
 \bigskip
 
-Kako bi SSR strategija mogla funkcionirati, na poslužitelju je potrebno odgovarajuće okruženje koje podržava izvođenje JavaScript koda i generiranje HTML stranica. To je najčešće Node.js \cite{vuejsssr}
+Kako bi SSR strategija mogla funkcionirati, na poslužitelju je potrebno odgovarajuće okruženje koje podržava izvođenje JavaScript koda i generiranje HTML stranica. To je najčešće Node.js \cite{vuejsssr}.
 
 \bigskip
 
@@ -112,10 +111,10 @@ Kako bi SSR strategija mogla funkcionirati, na poslužitelju je potrebno odgovar
     \item Čekanje na poslužitelju – iako nema čekanja na izvršavanje JavaScript ko\-da (prije prikaza sadržaja) na strani klijenta, prilikom prve posjete stranici potrebno je pričekati na poslužitelja da iscrta HTML dokument koji nije prethodno generiran. Prethodno spomenuti streaming SSR pokušava ublažiti i ovaj nedostatak.
     \item Čekanje do interaktivnosti – unatoč brzom prikazu početnog sadržaja stranice, ipak je potrebno pričekati na proces hidracije kako bi stranica postala interaktivna. To uključuje preuzimanje JavaScript paketa i izvršavanje koda što može blokirati glavnu procesorsku nit i time povećati vrijeme do interaktivnosti (TTI).
     \item Povećano korištenje resursa poslužitelja – generiranje HTML dokumenata na svaki zahtjev korisnika rezultira i većom potrošnjom računalnih resursa poput memorije i procesorske snage, što je kod CSR-a prebačeno na uređaj klijenta.
-    \item Složeniji proces razvoja – zbog činjenice da se određeni dijelovi koda mogu izvršavati samo na klijentu ili samo na poslužitelju, raste i kompleksnost u razvoju aplikacije. \cite{beran2023usporedba}
+    \item Složeniji proces razvoja – zbog činjenice da se određeni dijelovi koda mogu izvršavati samo na klijentu ili samo na poslužitelju, raste i kompleksnost u razvoju aplikacije \cite{beran2023usporedba}.
 \end{itemize}
 
-S obzirom na navedene prednosti i nedostatke ova strategija iscrtavanja najbolja je za tipove aplikacija koje imaju slijedeća obilježja: \cite{moore2024rendering}
+S obzirom na navedene prednosti i nedostatke ova strategija iscrtavanja najbolja je za tipove aplikacija koje imaju slijedeća obilježja \cite{moore2024rendering}:
 \begin{itemize}
     \item stalna potreba za svježim i ažuriranim podacima
     \item visoka razina personalizacije (custom dashboards)
@@ -123,12 +122,12 @@ S obzirom na navedene prednosti i nedostatke ova strategija iscrtavanja najbolja
     \item dobar SEO
 \end{itemize}
 
-\subsubsection{Generiranje statičkih stranica (SSG)}
+\subsection{Generiranje statičkih stranica (SSG)}
 
-Kod ove strategije iscrtavanja stranice se unaprijed iscrtavaju na poslužitelju prilikom izgradnje aplikacije, te se zatim poslužuju klijentu na zahtjev, bez potrebe za ponovnim iscrtavanjem pri svakom zahtjevu kao kod SSR-a. Ovakve stranice se mogu i spremiti u priručnu memoriju (engl. cache) koristeći CDN radi brže distribucije korisnicima. \cite{nextjsssg}, \cite{sanityssg}
+Kod ove strategije iscrtavanja stranice se unaprijed iscrtavaju na poslužitelju prilikom izgradnje aplikacije, te se zatim poslužuju klijentu na zahtjev, bez potrebe za ponovnim iscrtavanjem pri svakom zahtjevu kao kod SSR-a. Ovakve stranice se mogu i spremiti u priručnu memoriju (engl. cache) koristeći CDN radi brže distribucije korisnicima \cite{nextjsssg}, \cite{sanityssg}.
 
 \bigskip
-\textbf{Glavne prednosti ove strategije su: }\cite{moore2024rendering}
+\textbf{Glavne prednosti ove strategije su \cite{moore2024rendering}: }
 \begin{itemize}
     \item Najbrže moguće učitavanje stranice – budući da su stranice statični HTML, nije potrebno čekati na njihovo iscrtavanje na poslužitelju ili na preuzimanje i izvršavanje JavaScript koda.
     \item Odlične su za SEO – budući da se brzo učitavanju i sadrže sav potreban sadržaj idealne su za pregled od strane pretraživača.
@@ -153,11 +152,11 @@ S obzirom na navedene prednosti i nedostatke ova strategija iscrtavanja najbolja
     \item e-commerce proizvoda
     \item dokumentacije i pomoći
 \end{itemize}
-Generalno pravilo je postaviti pitanje: može li se stranica iscrtati unaprijed, prije korisničkog zahtjeva? Ako je odgovor potvrdan, SSG se nameće kao logičan izbor. \cite{nextjsssg}
+Generalno pravilo je postaviti pitanje: može li se stranica iscrtati unaprijed, prije korisničkog zahtjeva? Ako je odgovor potvrdan, SSG se nameće kao logičan izbor \cite{nextjsssg}.
 
-Postoji mogućnost kombiniranja SSG-a i CSR-a gdje se stranica servira sa prethodno iscrtanim statičnim dijelom koji se ne mijenja, a po učitavanju JavaScripta na klijentu se ispunjavaju dinamični dijelovi stranice svježim podacima. Ovo je alternativa korištenju SSR strategije, koja također ima svoje prednosti i nedostatke. \cite{nextjsssg}
+Postoji mogućnost kombiniranja SSG-a i CSR-a gdje se stranica servira sa prethodno iscrtanim statičnim dijelom koji se ne mijenja, a po učitavanju JavaScripta na klijentu se ispunjavaju dinamični dijelovi stranice svježim podacima. Ovo je alternativa korištenju SSR strategije, koja također ima svoje prednosti i nedostatke \cite{nextjsssg}.
 
-\subsubsection{Inkrementalna statička generacija (ISR)}
+\subsection{Inkrementalna statička generacija (ISR)}
 
 Ovu strategiju iscrtavanja neki nazivaju i hibridnim web razvojem jer kombinira generiranje statičnih stranica (SSG) sa iscrtavanjem na strani poslužitelja (SSR).
 
@@ -167,7 +166,7 @@ Funkcionira na način da se najprije iscrta statična stranica kojoj se odredi v
 
 \bigskip
 
-Uobičajeni način postavljanja na poslužitelj (engl. deployment) jest atomsko postavljanje, tj. kada se cjelokupni kod, resursi i konfiguracija ažuriraju u isto vrijeme. Ovaj način postavljanja čuva integritet stranice i omogućava jednostavan opoziv i povratak na prijašnju verziju u slučaju potrebe (engl. rollback). Svako pojedinačno postavljanje je jedna cjelovita verzija web aplikacije. ISR strategija narušava ovaj integritet budući da stalno nadodaje novo generirane stranice u web aplikaciju, odvojeno od početno izgrađenog koda. Zbog ovog spremanja u pričuvnu memoriju (engl. caching)  je vrlo teško učiniti povratak na prethodnu verziju, a pri tome osigurati da svi korisnici dobiju istu verziju stranice. \cite{flaws2021isr}
+Uobičajeni način postavljanja na poslužitelj (engl. deployment) jest atomsko postavljanje, tj. kada se cjelokupni kod, resursi i konfiguracija ažuriraju u isto vrijeme. Ovaj način postavljanja čuva integritet stranice i omogućava jednostavan opoziv i povratak na prijašnju verziju u slučaju potrebe (engl. rollback). Svako pojedinačno postavljanje je jedna cjelovita verzija web aplikacije. ISR strategija narušava ovaj integritet budući da stalno nadodaje novo generirane stranice u web aplikaciju, odvojeno od početno izgrađenog koda. Zbog ovog spremanja u pričuvnu memoriju (engl. caching)  je vrlo teško učiniti povratak na prethodnu verziju, a pri tome osigurati da svi korisnici dobiju istu verziju stranice \cite{flaws2021isr}.
 
 \bigskip
 
@@ -176,7 +175,7 @@ Potrebno je naglasiti da se ova strategija oslanja na mrežu za isporuku sadrža
 \bigskip
 
 Implementacija ove strategije uvelike se razliku među programskim okvirima.
-Npr. Next.js generira statične stranice za dinamične rute prilikom vremena izgradnje aplikacije (build time) te ih obnavlja na prvu posjetu korisnika nakon isteka vremena revalidacije. Nuxt pak generira traženu stranicu tek na prvi zahtjev korisnika a ne prilikom izgradnje aplikacije. \cite{troyan2024nuxt}
+Npr. Next.js generira statične stranice za dinamične rute prilikom vremena izgradnje aplikacije (build time) te ih obnavlja na prvu posjetu korisnika nakon isteka vremena revalidacije. Nuxt pak generira traženu stranicu tek na prvi zahtjev korisnika a ne prilikom izgradnje aplikacije \cite{troyan2024nuxt}.
 
 \bigskip
 
@@ -191,19 +190,19 @@ Npr. Next.js generira statične stranice za dinamične rute prilikom vremena izg
 
 \bigskip
 
-\textbf{Nedostatci ove strategije su:}
+\textbf{Nedostatci ove strategije su \cite{flaws2021isr}:}
 
 \begin{itemize}
     \item korisnici koji prvi posjete stranicu nakon isteka perioda revalidacije dobivaju zastarjelu verziju stranice
     \item potrebna veća razina konfiguriranja – postavljanje optimalnog vremena revalidacije na svaki tip stranice posebno
-    \item složenije debugiranje – teže razumjevanje problema koji nastanu zbog spremanja u priručnu memoriju \cite{flaws2021isr}
+    \item složenije debugiranje – teže razumjevanje problema koji nastanu zbog spremanja u priručnu memoriju
 \end{itemize}
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{slike/uvod/pregled-strategija-iscrtavanja.jpg}
-    \caption{Pregled strategija iscrtavanja u Next.js programskom okviru\cite{dumais2021nextjs}}
+    \caption{Pregled strategija iscrtavanja u Next.js programskom okviru \cite{dumais2021nextjs}}
     \label{fig:pregled-strategija-iscrtavanja}
 \end{figure}
 
