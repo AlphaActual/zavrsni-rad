@@ -1,6 +1,43 @@
-\section{Rezultati}
+\section{Rezultati testiranja}
+Rezultati testiranja podjeljeni su prema stranicama koje predstavljaju određeni tip web sadržaja:
 
-\subsection{Stranica O nama}
+\begin{enumerate}
+    \item \textbf{Stranica O nama} - statični sadržaj
+    \item \textbf{Stranica Blog} - dinamički sadržaj s listom blog postova
+    \item \textbf{Stranica pojedinog blog posta} - dinamički sadržaj s detaljima pojedinog blog posta
+\end{enumerate}
+
+\bigskip
+\noindent
+Za prikaz rezultata pojedine stranice odabrani su slijedeći grafovi i tablice:
+
+\begin{itemize}
+    \item \textbf{Ukupna ocjena radnih značajki programskog okvira}
+    \item \textbf{Ukupna ocjena radnih značajki programskog okvira po metrici}
+    \item \textbf{Ocjena kombinacije programskog okvira i strategije iscrtavanja po metrici (postotak)}
+    \item \textbf{Ocjena kombinacije programskog okvira i strategije iscrtavanja po metrici (vrijednosti)}
+    \item \textbf{Ocjena strategije iscrtavanja po programskom okviru}
+    \item \textbf{Sažetak rezultata po kategorijama} - tablica
+\end{itemize}
+
+\bigskip
+\noindent
+Za prikaz dodatnih metrika odabrani su slijedeći grafovi i tablice:
+
+\begin{itemize}
+    \item \textbf{Srednje vrijednosti vremena izgradnje po strategiji iscrtavanja}
+    \item \textbf{Srednja veličina JS paketa po strategiji iscrtavanja}
+    \item \textbf{Srednja vremena skriptiranja po strategiji iscrtavanja}
+    \item \textbf{Mapa topline vremena izgradnje po strategiji iscrtavanja}
+    \item \textbf{Konzistentnost vremena izgradnje po strategiji iscrtavanja}
+    \item \textbf{Raspodjela veličine JS paketa po programskom okviru}
+    \item \textbf{Odnos između veličine JS paketa i vremena izgradnje}
+    \item \textbf{Mapa topline učinkovitosti programskog okvira po strategiji iscrtavanja}
+    \item \textbf{Srednja vrijednost vremena izgradnje po programskom okviru}
+    \item \textbf{Kompromis između vremena skriptiranja i veličine JS paketa}
+\end{itemize}
+
+\subsection{Rezultati testiranja stranice "O nama"}
 
 \begin{figure}[H]
     \centering
@@ -39,7 +76,7 @@
 
 \newpage
 
-\subsection{Sažetak rezultata testiranja}
+\subsection{Sažetak rezultata - stranica "O nama"}
 
 \begin{table}[H]
 \centering
@@ -51,22 +88,22 @@
         \textbf{Kategorija} & \textbf{Element}                             & \textbf{Ocjena}   \\
         \hline
         \multirow{3}{*}{\textbf{Programski okviri}}
-                            & 1. Next.js                                   & 96.0\%            \\[0.2em]
-                            & 2. Nuxt.js                                   & 89.4\%            \\[0.2em]
-                            & 3. SvelteKit                                 & 87.6\%            \\
+                            & 1. Next.js                                   & 96.0\% (±7.0\%)   \\[0.2em]
+                            & 2. Nuxt.js                                   & 89.4\% (±13.2\%)  \\[0.2em]
+                            & 3. SvelteKit                                 & 87.6\% (±13.5\%)  \\
         \hline
         \multirow{4}{*}{\textbf{Strategije iscrtavanja}}
-                            & 1. Incremental Static Regeneration           & 91.9\%            \\[0.2em]
-                            & 2. Server-Side Rendering                     & 91.7\%            \\[0.2em]
-                            & 3. Static Site Generation                    & 90.7\%            \\[0.2em]
-                            & 4. Client-Side Rendering                     & 89.7\%            \\
+                            & 1. Incremental Static Regeneration           & 91.9\% (±11.7\%)  \\[0.2em]
+                            & 2. Server-Side Rendering                     & 91.7\% (±11.5\%)  \\[0.2em]
+                            & 3. Static Site Generation                    & 90.7\% (±13.0\%)  \\[0.2em]
+                            & 4. Client-Side Rendering                     & 89.7\% (±13.0\%)  \\
         \hline
         \multirow{5}{*}{\textbf{Najbolje kombinacije}}
-                            & 1. Next.js + Static Site Generation          & 96.3\%            \\[0.2em]
-                            & 2. Next.js + Incremental Static Regeneration & 96.2\%            \\[0.2em]
-                            & 3. Next.js + Client-Side Rendering           & 96.0\%            \\[0.2em]
-                            & 4. Next.js + Server-Side Rendering           & 95.7\%            \\[0.2em]
-                            & 5. Nuxt.js + Incremental Static Regeneration & 91.3\%            \\
+                            & 1. Next.js + Static Site Generation          & 96.3\% (±7.6\%)   \\[0.2em]
+                            & 2. Next.js + Incremental Static Regeneration & 96.2\% (±7.1\%)   \\[0.2em]
+                            & 3. Next.js + Client-Side Rendering           & 96.0\% (±8.0\%)   \\[0.2em]
+                            & 4. Next.js + Server-Side Rendering           & 95.7\% (±7.4\%)   \\[0.2em]
+                            & 5. Nuxt.js + Incremental Static Regeneration & 91.3\% (±12.7\%)  \\
         \hline
         \multirow{6}{*}{\textbf{Vodeći po metrici}}
                             & FCP: Next.js + Client-Side Rendering         & 100.0\% (0.920s)  \\[0.2em]
