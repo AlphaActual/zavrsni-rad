@@ -37,37 +37,46 @@
 \end{figure}
 
 \newpage
-\subsection{Rangiranje programskih okvira}
-\begin{enumerate}
-    \item Next.js: 92.3\%
-    \item Nuxt.js: 88.1\%
-    \item SvelteKit: 87.8\%
-\end{enumerate}
 
-\subsection{Rangiranje strategija iscrtavanja}
-\begin{enumerate}
-    \item Server-Side Rendering: 90.8\%
-    \item Incremental Static Regeneration: 90.7\%
-    \item Static Site Generation: 90.3\%
-    \item Client-Side Rendering: 85.8\%
-\end{enumerate}
+\subsection{Sažetak rezultata testiranja}
 
-\subsection{Najbolje kombinacije}
-\begin{enumerate}
-    \item Next.js + Server-Side Rendering: 95.8\%
-    \item Next.js + Incremental Static Regeneration: 95.5\%
-    \item Next.js + Static Site Generation: 95.5\%
-    \item Nuxt.js + Server-Side Rendering: 89.0\%
-    \item SvelteKit + Static Site Generation: 88.5\%
-\end{enumerate}
-
-\subsection{Vodeći po metrici}
-\begin{itemize}
-    \item FCP: Next.js + Client-Side Rendering (100.0\%, 0.790)
-    \item LCP: Nuxt.js + Client-Side Rendering (85.0\%, 2.710)
-    \item SI: Next.js + Client-Side Rendering (100.0\%, 1.240)
-    \item TTI: Nuxt.js + Client-Side Rendering (97.0\%, 2.720)
-    \item TBT: Next.js + Client-Side Rendering (100.0\%, 15.000)
-    \item CLS: Nuxt.js + Client-Side Rendering (100.0\%, 0.000)
-\end{itemize}
+\begin{table}[H]
+    \centering
+    \caption{Sažetak rezultata testiranja stranice pojedinog bloga}
+    \label{tab:sazetak-rezultata-blog-post}
+    \renewcommand{\arraystretch}{1.5}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{Kategorija} & \textbf{Element}                             & \textbf{Ocjena}    \\
+            \hline
+            \multirow{3}{*}{\textbf{Programski okviri}}
+                                & 1. Next.js                                   & 92.3\%             \\[0.2em]
+                                & 2. Nuxt.js                                   & 88.1\%             \\[0.2em]
+                                & 3. SvelteKit                                 & 87.8\%             \\
+            \hline
+            \multirow{4}{*}{\textbf{Strategije iscrtavanja}}
+                                & 1. Server-Side Rendering                     & 90.8\%             \\[0.2em]
+                                & 2. Incremental Static Regeneration           & 90.7\%             \\[0.2em]
+                                & 3. Static Site Generation                    & 90.3\%             \\[0.2em]
+                                & 4. Client-Side Rendering                     & 85.8\%             \\
+            \hline
+            \multirow{5}{*}{\textbf{Najbolje kombinacije}}
+                                & 1. Next.js + Server-Side Rendering           & 95.8\%             \\[0.2em]
+                                & 2. Next.js + Incremental Static Regeneration & 95.5\%             \\[0.2em]
+                                & 3. Next.js + Static Site Generation          & 95.5\%             \\[0.2em]
+                                & 4. Nuxt.js + Server-Side Rendering           & 89.0\%             \\[0.2em]
+                                & 5. SvelteKit + Static Site Generation        & 88.5\%             \\
+            \hline
+            \multirow{6}{*}{\textbf{Vodeći po metrici}}
+                                & FCP: Next.js + Client-Side Rendering         & 100.0\% (0.790s)   \\[0.2em]
+                                & LCP: Nuxt.js + Client-Side Rendering         & 85.0\% (2.710s)    \\[0.2em]
+                                & SI: Next.js + Client-Side Rendering          & 100.0\% (1.240s)   \\[0.2em]
+                                & TTI: Nuxt.js + Client-Side Rendering         & 97.0\% (2.720s)    \\[0.2em]
+                                & TBT: Next.js + Client-Side Rendering         & 100.0\% (15.000ms) \\[0.2em]
+                                & CLS: Nuxt.js + Client-Side Rendering         & 100.0\% (0.000)    \\
+            \hline
+        \end{tabular}%
+    }
+\end{table}
 
