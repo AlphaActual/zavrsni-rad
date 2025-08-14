@@ -61,7 +61,6 @@ Vrijeme do prvog bajta označava koliko vremena prođe od trenutka kada pregledn
     \item Ukupno trajanje izvršavanja skripti (engl. total scripting time) predstavlja zbroj vremena izvršavanja svih JavaScript skripti na stranici. Ova metrika pomaže pri identifikaciji potencijalnih uskih grla u performansama aplikacije.
 \end{itemize}
 
-\subsection{Alati i testno okruženje}
 
 \subsection{Lighthouse}
 
@@ -118,6 +117,19 @@ Izvorni kod skripte, zajedno sa dobivenim rezultatima dostupan je na autorovom G
     \caption{Testiranje stranice pojedinog bloga kroz terminal}
     \label{fig:testiranje-aplikacije}
 \end{figure}
+
+\subsection{Struktura i prikaz podataka}
+
+Prikupljeni podaci svake metrike dobivene CLI alatom Lighthouse pretvoreni su u mjerne jedinice prigodne za daljnju analizu i bolju interpretaciju rezultata. Npr. milisekunde su najprije pretvorene u sekunde, vrijednosti CLS (raspon od 0 do 1) su normalizirane i zaokružene na 3 decimale tako da se lakše uspoređuju između različitih testova. Uz izvorne vrijednosti u CSV datoteke s rezultatima pohranjene su i vrijednosti ocjene koju je tom rezultatu dodijelio Lighthouse.
+
+\bigskip
+
+Lighthouse svaki sirovi podatak pretvara u ocjenu od 0 do 100, gdje je 100 najbolja ocjena. Ovu ocjenu Lighthouse dodjeljuje na temelju krivulje distribucije izvedene iz stvarnih podataka o performansama web-stranica prikupljenih na HTTP Archiveu \cite
+{chrome2025lighthouse}.
+
+\bigskip
+
+Budući da se prikaz rezulatata oslanja na ovu ocjenu Googleovog alata koja se prigodno izražava kao postotak, na većini grafova u ovom radu prikazane su ocjene učinka i postignuti rezulatati u obliku postotka. Uz određene rezultate prikazana je i standardna devijacija.
 
 \subsection{Testno okruženje}
 
