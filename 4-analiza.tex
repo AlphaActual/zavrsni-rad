@@ -20,11 +20,11 @@ Analiza strategija iscrtavanja otkriva zanimljive obrasce koji se razlikuju ovis
 
 \textbf{Incremental Static Regeneration (ISR)} pokazuje najbolje rezultate na statičnoj stranici "O nama" (91,9\%), što je očekivano zbog kombinacije prednosti statičke generacije s mogućnošću osvježavanja sadržaja. Na dinamičnim stranicama ISR zadržava kompetentnih 90,6\% do 90,7\%, čime se potvrđuje njegova fleksibilnost i prilagodljivost.
 
-\textbf{Server-Side Rendering (SSR)} ostvaruje odlične rezultate kod prikaza dinamičkog sadržaja, posebice na stranicama Blog (91,3\%) i Blog post (90,8\%) gdje ova strategija jasno pokazuje svoju prednost kada je potrebno učitavanje svježih podataka na zahtjev, što i pokazuju bolje performanse na dinamičkim stranicama u odnosu na statičnu stranicu O nama (91,7\%).
+\textbf{Server-Side Rendering (SSR)} ostvaruje odlične rezultate kod prikaza dinamičkog sadržaja, posebice na stranicama Blog (91,3\%) i Blog post (90,8\%). Iako se često smatra idealnom za dinamički sadržaj, u ovom je testiranju strategija zabilježila najbolje rezultate na statičnoj stranici "O nama" (91,7\%), što ukazuje na njenu visoku efikasnost neovisno o tipu sadržaja.
 
-\textbf{Static Site Generation (SSG)} bilježi konzistentno dobre ocjene na svim testiranim stranicama (90,3\% - 90,7\%), s najboljim ocjenama na stranici O nama (90,7\%) što je i za očekivati, budući da ova strategija briljira upravo kod prikaza statičnih stranica. Budući da se kod ove strategije sadržaj iscrtava prilikom izgradnje time se objašnjava konzistentnost rezultata.
+\textbf{Static Site Generation (SSG)} bilježi konzistentno dobre ocjene na svim testiranim stranicama (90,3\% - 90,7\%), s najboljim rezultatima na stranicama Blog i "O nama" (90,6\% - 90,7\%). Konzistentnost rezultata odražava osnovnu prednost SSG strategije - potpunu pripremu sadržaja tijekom izgradnje, što omogućava predvidljive performanse neovisno o složenosti sadržaja.
 
-\textbf{Client-Side Rendering (CSR)} pokazuje najveće varijacije u performansama ovisno o tipu stranice. Na statičnoj stranici "O nama" CSR postiže solidne rezultate (89,7\%), ali značajno opada na složenijim dinamičkim stranicama (Blog post - 85,8\%). Ovo ponašanje odražava inherentnu karakteristiku CSR-a gdje se složenost obrade prebacuje na klijentsku stranu.
+\textbf{Client-Side Rendering (CSR)} pokazuje najveće varijacije u performansama ovisno o tipu stranice. Na statičnoj stranici "O nama" CSR postiže solidne rezultate (89,7\%), ali značajno opada na složenijim dinamičkim stranicama (Blog post - 85,8\%). Ova strategija također pokazuje najnižu minimalnu ocjenu u cijelom testiranju (40 bodova na blog post stranici), što ukazuje na potencijalne probleme s konzistentnošću. Ovo ponašanje odražava inherentnu karakteristiku CSR-a gdje se složenost obrade prebacuje na klijentsku stranu.
 
 Standardne devijacije pokazuju da SSR i ISR imaju najmanje varijacije (±11,5\% do ±12,9\%), dok CSR pokazuje najveće varijacije (±13,0\% do ±17,3\%), što sugerira da su server-side strategije predvidljivije u performansama.
 
@@ -32,21 +32,31 @@ Standardne devijacije pokazuju da SSR i ISR imaju najmanje varijacije (±11,5\% 
 
 Detaljnom analizom pojedinačnih Web Vitals metrika možemo identificirati specifične snage i slabosti različitih kombinacija okvira i strategija.
 
-\textbf{First Contentful Paint (FCP)} metrika dosljedno pokazuje da Next.js s CSR strategijom postiže najbolje rezultate na svim tipovima stranica (100\% ocjena, vrijednosti od 0,79s do 0,92s). Ovo je očekivano jer CSR omogućava vrlo brzu inicijalizaciju osnovnih elemenata stranice prije učitavanja sadržaja.
+\textbf{Analiza agregiranih metrika po tipovima stranica} pokazuje jasne obrasce performansi kroz različite Web Vitals metrike. Cumulative Layout Shift (CLS) postiže najbolje ukupne rezultate s ocjenama od 95,0\% do 100,0\%, pri čemu blog stranica postiže savršenu ocjenu (100,0\%). Total Blocking Time (TBT) također pokazuje izvrsne rezultate (99,9\% - 100,0\%), što ukazuje na dobru optimizaciju blokadnog vremena kroz sve testirane kombinacije.
 
-\textbf{Largest Contentful Paint (LCP)} predstavlja najveći izazov za sve testirane kombinacije. Najbolje rezultate postiže Nuxt.js s CSR strategijom (85\% - 88\%), ali vrijednosti od 2,59s do 2,71s još uvijek prelaze preporučeni prag od 2,5s. Ovo ukazuje na općeniti izazov optimizacije LCP metrike u modernim web aplikacijama.
+Time to Interactive (TTI) metrika bilježi konzistentno visoke ocjene (95,5\% - 96,4\%), s najboljim rezultatima na statičnoj stranici "O nama" (96,4\%). Speed Index (SI) pokazuje veće varijacije ovisno o tipu stranice, s najboljih rezultatima na stranici "O nama" (92,5\%) i Blog post (92,3\%), dok Blog stranica zaostaje (89,4\%).
 
-\textbf{Speed Index (SI)} pokazuje najbolje rezultate kod Next.js kombinacija, posebno s CSR strategijom koja postiže 100\% ocjene. Vrijednosti od 1,24s do 1,75s nalaze se unutar prihvatljivih granica, što ukazuje na dobru optimizaciju progresivnog učitavanja sadržaja.
+\textbf{First Contentful Paint (FCP)} metrika pokazuje umjerene rezultate kroz sve tipove stranica (76,2\% - 77,0\%), što ukazuje na prostor za poboljšanje brzine inicijalizacije sadržaja. \textbf{Largest Contentful Paint (LCP)} predstavlja najveći izazov s najnižim ocjenama (77,4\% - 80,8\%), pri čemu blog post stranica pokazuje najslabije performanse (77,4\%).
 
-\textbf{Time to Interactive (TTI)} najbolje rezultate postiže kod Nuxt.js s CSR strategijom (97\% - 98\%), što sugerira da Nuxt.js ima bolje optimiziranu interaktivnost nakon inicijalizacije aplikacije.
+\textbf{Specifične kombinacije okvira i strategija} pokazuju sljedeće obrasce: Next.js s CSR strategijom dosljedno postiže najbolje FCP rezultate na svim tipovima stranica (100\% ocjena, vrijednosti od 0,79s do 0,92s). Ovo je očekivano jer CSR omogućava vrlo brzu inicijalizaciju osnovnih elemenata stranice prije učitavanja sadržaja.
 
-\textbf{Total Blocking Time (TBT)} pokazuje izvrsne rezultate kod Next.js s CSR strategijom (100\% ocjene, vrijednosti od 8,2ms do 53,5ms), što je daleko ispod kritičnog praga od 300ms.
+Najbolje LCP rezultate postiže Nuxt.js s CSR strategijom (85\% - 88\%), ali vrijednosti od 2,59s do 2,71s još uvijek prelaze preporučeni prag od 2,5s. Ovo ukazuje na općeniti izazov optimizacije LCP metrike u modernim web aplikacijama.
 
-\textbf{Cumulative Layout Shift (CLS)} postiže savršene rezultate (100\% ocjene, vrijednost 0,000 - 0,020) kod većine kombinacija, što ukazuje na dobru stabilnost layouta kroz sve testirane okvire i strategije.
+Speed Index (SI) pokazuje najbolje rezultate kod Next.js kombinacija, posebno s CSR strategijom koja postiže 100\% ocjene. Vrijednosti od 1,24s do 1,75s nalaze se unutar prihvatljivih granica, što ukazuje na dobru optimizaciju progresivnog učitavanja sadržaja.
+
+Time to Interactive (TTI) najbolje rezultate postiže kod Nuxt.js s CSR strategijom (97\% - 98\%), što sugerira da Nuxt.js ima bolje optimiziranu interaktivnost nakon inicijalizacije aplikacije.
+
+Total Blocking Time (TBT) pokazuje izvrsne rezultate kod Next.js s CSR strategijom (100\% ocjene, vrijednosti od 8,2ms do 53,5ms), što je daleko ispod kritičnog praga od 300ms.
+
+Cumulative Layout Shift (CLS) postiže savršene rezultate (100\% ocjene, vrijednost 0,000 - 0,020) kod većine kombinacija, što ukazuje na dobru stabilnost layouta kroz sve testirane okvire i strategije. Iznimka je Next.js s CSR strategijom na blog post stranici koji bilježi CLS vrijednost od 0,3 (40 bodova), što predstavlja jedini slučaj značajnog layoutnog pomaka u cijelom testiranju i ukazuje na potrebu za specifičnim optimizacijama ove kombinacije.
 
 \subsection{Analiza utjecaja tipa stranice na ocjene}
 
 Tip stranice značajno utječe na performanse različitih kombinacija okvira i strategija, što otkriva važne obrasce za praktičnu primjenu.
+
+\textbf{Kvantitativna analiza ukupnih performansi} pokazuje jasnu hijerarhiju složenosti sadržaja. Statična stranica "O nama" postiže najbolje ukupne performanse s prosjekom od 91,01\% (±12,07\%), dok Blog stranica bilježi 90,33\% (±12,65\%), a stranica pojedinog blog posta najniže rezultate s 89,42\% (±14,04\%). Trend opadanja performansi (91,01\% → 90,33\% → 89,42\%) jasno ilustrira troškove povećane složenosti sadržaja.
+
+Raspon rezultata također se povećava s složenošću stranice - od 63-100 bodova na statičnoj stranici, preko 58-100 na blog stranici, do 40-100 na stranici blog posta. Ova povećana varijabilnost (standardne devijacije od 12,07\% do 14,04\%) sugerira da složeniji sadržaj čini performanse manje predvidljivima.
 
 \textbf{Statična stranica "O nama"} pokazuje najbolje ukupne performanse (87,6\% - 96,0\%) jer ne zahtijeva dinamičko dohvaćanje podataka. Next.js postiže vrhunske rezultate (96,0\%) na ovom tipu stranice, što potvrđuje optimizaciju za statični sadržaj. ISR strategija pokazuje najbolje rezultate (91,9\%) jer može u potpunosti iskoristiti statičku prirodu sadržaja.
 
@@ -88,7 +98,9 @@ Analiza rezultata otkriva nekoliko ključnih opažanja koja imaju praktičnu vri
 
 \textbf{Next.js se izdvaja kao najstabilniji i najbolji okvir} kroz sve testirane scenarije, s konzistentnim performansama i najmanjom varijabilnošću rezultata. Ova prednost posebno je izražena na statičnom sadržaju, ali se održava i kroz dinamičke scenarije.
 
-\textbf{Strategija iscrtavanja mora biti usklađena s prirodom sadržaja.} SSR strategija pokazuje najbolje rezultate za dinamički sadržaj, ISR za hibridne scenarije, a SSG za statični sadržaj. CSR strategija ima specifične prednosti za FCP i TBT metrike, ali slabije performanse na složenijim stranicama.
+\textbf{Strategija iscrtavanja mora biti usklađena s prirodom sadržaja.} SSR strategija pokazuje najbolje rezultate za dinamički sadržaj, ISR za hibridne scenarije, a SSG za statični sadržaj. CSR strategija ima specifične prednosti za FCP i TBT metrike, ali pokazuje najveću nestabilnost s ekstremnim vrijednostima (40-100 bodova na blog post stranici).
+
+\textbf{Kvantitativno pogoršanje performansi prema složenosti sadržaja} je sistematsko i mjerljivo - ukupne performanse opadaju za 0,68 postotnih bodova od statične na blog stranicu, a dodatnih 0,91 postotnih bodova na blog post stranicu. Ovo predstavlja ukupno smanjenje od 1,59 postotnih bodova (1,7\% relativno smanjenje) između najjednostavnije i najsloženije stranice.
 
 \textbf{LCP metrika predstavlja najveći izazov} za sve testirane kombinacije, što ukazuje na potrebu za specifičnim optimizacijama. Ni jedna kombinacija nije dosljedno postizala izvrsne LCP rezultate, što sugerira da je ova metrika područje za buduće poboljšanje.
 
