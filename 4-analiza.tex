@@ -1,16 +1,101 @@
 \section{Analiza rezultata}
 
+U ovom poglavlju slijedi detaljna analiza rezultata testiranja radnih značajki tri programska okvira (Next.js, Nuxt.js i SvelteKit) uz četiri strategije iscrtavanja (SSG, SSR, CSR i ISR) na 3 različita tipa stranica. Analiza se temelji na ocjenama  Web Vitals metrika dobivenih mjerenjem Lighthouse CLI alatom: First Contentful Paint (FCP), Largest Contentful Paint (LCP), Speed Index (SI), Time to Interactive (TTI), Total Blocking Time (TBT) i Cumulative Layout Shift (CLS).
+
 \subsection{Analiza ocjena radnih značajki programskih okvira}
 
+Evaluacija ukupnih rezultata radnih karakteristika programskih okvira otkriva jasnu hijerarhiju pri svim vrstama stranica.
+
+\textbf{Next.js} se dosljedno pokazao kao najbolji programski okvir s ocjenama između 92,3\% i 96,0\% ovisno o tipu stranice. Okvir demonstrira najbolje rezultate na statičnom sadržaju (stranica "O nama" - 96,0\%), što sugerira optimizaciju za statične stranice. Blagi pad u ocjenama kod dinamičkog sadržaja (Blog - 95,1\%, Blog post - 92,3\%) sugerira određeno opterećenje povezano s obradom dinamičkih podataka, no Next.js i dalje zadržava prednost od oko 6-8\% u odnosu na konkurenciju.
+
+\textbf{Nuxt.js} zauzima drugu poziciju s ocjenama između 88,1\% i 89,4\%. Iz rezultata vidljivo je da Nuxt.js pokazuje relativno stabilne performanse kroz različite tipove stranica, s najmanjom varijacijom između statičnog (89,4\%) i dinamičkog sadržaja (88,1\% - 88,5\%). Ova konzistentnost ukazuje na dobro uravnoteženu arhitekturu koja se jednako dobro nosi s različitim tipovima sadržaja.
+
+\textbf{SvelteKit} na testovima bilježi neznatno niži rezultat od Nuxt.js-a (87,4\% - 87,8\%). Baš kao i Nuxt.js, SvelteKit održava konstantne performanse neovisno o vrsti stranice. Manje ocjene mogu se objasniti time da je SvelteKit mlađi programski okvir koji je još uvijek u razvoju i procesu optimizacije.
+
+Kad su u pitanju standardne devijacije, Next.js demonstrira najbolje ocjene dosljednosti (±7,0\% do ±14,8\%), dok su preostali okviri podložniji većim varijacijama (±13,2\% do ±14,1\%). To ukazuje na zrelost Next.js-a kao stabilnijeg i pouzdajnijeg programskog okvira.
 
 \subsection{Analiza ocjena strategija iscrtavanja}
 
-\subsection{Analiza rezultata pojedinih metrika - Web vitals}
+Analiza strategija iscrtavanja otkriva zanimljive obrasce koji se razlikuju ovisno o tipu stranice i prirodi sadržaja.
+
+\textbf{Incremental Static Regeneration (ISR)} pokazuje najbolje rezultate na statičnoj stranici "O nama" (91,9\%), što je očekivano zbog kombinacije prednosti statičke generacije s mogućnošću osvježavanja sadržaja. Na dinamičnim stranicama ISR zadržava kompetentnih 90,6\% do 90,7\%, čime se potvrđuje njegova fleksibilnost i prilagodljivost.
+
+\textbf{Server-Side Rendering (SSR)} ostvaruje odlične rezultate kod prikaza dinamičkog sadržaja, posebice na stranicama Blog (91,3\%) i Blog post (90,8\%) gdje ova strategija jasno pokazuje svoju prednost kada je potrebno učitavanje svježih podataka na zahtjev, što i pokazuju bolje performanse na dinamičkim stranicama u odnosu na statičnu stranicu O nama (91,7\%).
+
+\textbf{Static Site Generation (SSG)} bilježi konzistentno dobre ocjene na svim testiranim stranicama (90,3\% - 90,7\%), s najboljim ocjenama na stranici O nama (90,7\%) što je i za očekivati, budući da ova strategija briljira upravo kod prikaza statičnih stranica. Budući da se kod ove strategije sadržaj iscrtava prilikom izgradnje time se objašnjava konzistentnost rezultata.
+
+\textbf{Client-Side Rendering (CSR)} pokazuje najveće varijacije u performansama ovisno o tipu stranice. Na statičnoj stranici "O nama" CSR postiže solidne rezultate (89,7\%), ali značajno opada na složenijim dinamičkim stranicama (Blog post - 85,8\%). Ovo ponašanje odražava inherentnu karakteristiku CSR-a gdje se složenost obrade prebacuje na klijentsku stranu.
+
+Standardne devijacije pokazuju da SSR i ISR imaju najmanje varijacije (±11,5\% do ±12,9\%), dok CSR pokazuje najveće varijacije (±13,0\% do ±17,3\%), što sugerira da su server-side strategije predvidljivije u performansama.
+
+\subsection{Analiza rezultata pojedinih metrika - Web Vitals}
+
+Detaljnom analizom pojedinačnih Web Vitals metrika možemo identificirati specifične snage i slabosti različitih kombinacija okvira i strategija.
+
+\textbf{First Contentful Paint (FCP)} metrika dosljedno pokazuje da Next.js s CSR strategijom postiže najbolje rezultate na svim tipovima stranica (100\% ocjena, vrijednosti od 0,79s do 0,92s). Ovo je očekivano jer CSR omogućava vrlo brzu inicijalizaciju osnovnih elemenata stranice prije učitavanja sadržaja.
+
+\textbf{Largest Contentful Paint (LCP)} predstavlja najveći izazov za sve testirane kombinacije. Najbolje rezultate postiže Nuxt.js s CSR strategijom (85\% - 88\%), ali vrijednosti od 2,59s do 2,71s još uvijek prelaze preporučeni prag od 2,5s. Ovo ukazuje na općeniti izazov optimizacije LCP metrike u modernim web aplikacijama.
+
+\textbf{Speed Index (SI)} pokazuje najbolje rezultate kod Next.js kombinacija, posebno s CSR strategijom koja postiže 100\% ocjene. Vrijednosti od 1,24s do 1,75s nalaze se unutar prihvatljivih granica, što ukazuje na dobru optimizaciju progresivnog učitavanja sadržaja.
+
+\textbf{Time to Interactive (TTI)} najbolje rezultate postiže kod Nuxt.js s CSR strategijom (97\% - 98\%), što sugerira da Nuxt.js ima bolje optimiziranu interaktivnost nakon inicijalizacije aplikacije.
+
+\textbf{Total Blocking Time (TBT)} pokazuje izvrsne rezultate kod Next.js s CSR strategijom (100\% ocjene, vrijednosti od 8,2ms do 53,5ms), što je daleko ispod kritičnog praga od 300ms.
+
+\textbf{Cumulative Layout Shift (CLS)} postiže savršene rezultate (100\% ocjene, vrijednost 0,000 - 0,020) kod većine kombinacija, što ukazuje na dobru stabilnost layouta kroz sve testirane okvire i strategije.
 
 \subsection{Analiza utjecaja tipa stranice na ocjene}
 
+Tip stranice značajno utječe na performanse različitih kombinacija okvira i strategija, što otkriva važne obrasce za praktičnu primjenu.
+
+\textbf{Statična stranica "O nama"} pokazuje najbolje ukupne performanse (87,6\% - 96,0\%) jer ne zahtijeva dinamičko dohvaćanje podataka. Next.js postiže vrhunske rezultate (96,0\%) na ovom tipu stranice, što potvrđuje optimizaciju za statični sadržaj. ISR strategija pokazuje najbolje rezultate (91,9\%) jer može u potpunosti iskoristiti statičku prirodu sadržaja.
+
+\textbf{Stranica Blog} s listom postova predstavlja umjereno složen dinamički sadržaj. Next.js zadržava vodeću poziciju (95,1\%), ali s blago nižim ocjenama u odnosu na statičnu stranicu. SSR strategija pokazuje najbolje rezultate (91,3\%) jer omogućava efikasno server-side generiranje liste postova.
+
+\textbf{Stranica pojedinog blog posta} predstavlja najsloženiji scenarij s najnižim ukupnim ocjenama (85,8\% - 92,3\%). Next.js i dalje vodi (92,3\%), ali s najvećim padom performansi. SSR ponovno pokazuje najbolje rezultate (90,8\%) jer omogućava dinamičko učitavanje specifičnog sadržaja posta.
+
+Trend opadanja performansi od statičnog prema dinamičkom sadržaju (Next.js: 96,0\% → 95,1\% → 92,3\%) jasno ilustrira troškove dinamičke obrade sadržaja. Ova analiza sugerira da je izbor strategije iscrtavanja kritičan za optimizaciju performansi ovisno o prirodi sadržaja.
+
 \subsection{Analiza rezultata dodatnih metrika}
+
+Dodatne metrike pružaju uvid u razvojne aspekte performansi koji nisu obuhvaćeni Web Vitals metrikama.
+
+\textbf{Vremena izgradnje} pokazuju značajne razlike među okvirima i strategijama. SSG strategija općenito zahtijeva najduža vremena izgradnje jer mora pripremiti sve stranice unaprijed, dok CSR ima najkraća vremena jer prebacuje složenost na izvršno vrijeme. Next.js demonstrira najbolju optimizaciju procesa izgradnje kroz sve strategije.
+
+\textbf{Veličina JS paketa} varira značajno ovisno o strategiji. CSR strategija rezultira najvećim paketima jer mora uključiti svu logiku za client-side obradu, dok SSG omogućava manje pakete s optimiziranim kodom. SvelteKit pokazuje prednost u veličini paketa zbog svoje arhitekture koja eliminira nepotrebni kod.
+
+\textbf{Konzistentnost vremena izgradnje} ključna je za razvojno iskustvo. Next.js pokazuje najveću konzistentnost, što je važno za predvidljivost razvojnog procesa. Veće varijacije kod drugih okvira mogu utjecati na produktivnost razvojnog tima.
+
+\textbf{Korelacija između veličine paketa i vremena izgradnje} otkriva kompromise u optimizaciji. Strategije koje rezultiraju manjim paketima često zahtijevaju duža vremena izgradnje zbog dodatnih optimizacija, što predstavlja klasični trade-off između razvoja i produkcijskih performansi.
+
+\textbf{Matrica efikasnosti} kombinira runtime performanse s razvojnim metrikama, pružajući holistički pogled na efikasnost. Next.js s ISR strategijom pokazuje najbolju ukupnu efikasnost, balansirajući performanse s praktičnošću razvoja.
 
 \subsection{Pouzdanost izmjerenih podataka}
 
+Analiza pouzdanosti podataka temelji se na statističkim pokazateljima varijabilnosti i konzistentnosti mjerenja.
+
+\textbf{Standardne devijacije} kreću se od ±5,9\% do ±17,3\%, što ukazuje na umjerenu varijabilnost rezultata. Manje varijacije kod Next.js (±5,9\% - ±14,8\%) sugeriraju stabilniju i predvidljiviju platformu, dok veće varijacije kod drugih okvira mogu odražavati manje zrele optimizacije ili veću osjetljivost na testne uvjete.
+
+\textbf{Konzistentnost preko tipova stranica} pokazuje da svi okviri održavaju relativno stabilne performanse, što ukazuje na robusnost testnih rezultata. Sistematski obrasci (npr., opadanje performansi od statičnog prema dinamičkom sadržaju) potvrđuju valjanost izmjerenih trendova.
+
+\textbf{Reproducibilnost rezultata} kroz različite kombinacije okvira i strategija pokazuje logičke obrasce koji su u skladu s teoretskim očekivanjima. Na primjer, CSR strategija dosljedno pokazuje bolje FCP rezultate, dok SSR pokazuje prednosti kod dinamičkih stranica.
+
+Ukupno, podaci pokazuju dovoljnu pouzdanost za izvođenje valjanih zaključaka, iako varijabilnost sugerira potrebu za kontinuiranim testiranjem u različitim uvjetima za potpunu validaciju rezultata.
+
 \subsection{Ključna opažanja}
+
+Analiza rezultata otkriva nekoliko ključnih opažanja koja imaju praktičnu vrijednost za razvojne timove i arhitekte web aplikacija.
+
+\textbf{Next.js se izdvaja kao najstabilniji i najbolji okvir} kroz sve testirane scenarije, s konzistentnim performansama i najmanjom varijabilnošću rezultata. Ova prednost posebno je izražena na statičnom sadržaju, ali se održava i kroz dinamičke scenarije.
+
+\textbf{Strategija iscrtavanja mora biti usklađena s prirodom sadržaja.} SSR strategija pokazuje najbolje rezultate za dinamički sadržaj, ISR za hibridne scenarije, a SSG za statični sadržaj. CSR strategija ima specifične prednosti za FCP i TBT metrike, ali slabije performanse na složenijim stranicama.
+
+\textbf{LCP metrika predstavlja najveći izazov} za sve testirane kombinacije, što ukazuje na potrebu za specifičnim optimizacijama. Ni jedna kombinacija nije dosljedno postizala izvrsne LCP rezultate, što sugerira da je ova metrika područje za buduće poboljšanje.
+
+\textbf{Postoji jasni trade-off između runtime performansi i razvojne složenosti.} Strategije koje postižu najbolje runtime performanse (SSG, ISR) često zahtijevaju duža vremena izgradnje i složeniju konfiguraciju.
+
+\textbf{Konzistentnost performansi jednako je važna kao i vrhunski rezultati.} Next.js pokazuje da stabilnost i predvidljivost mogu biti jednako vrijedne kao i maksimalne performanse, posebno u produkcijskim okruženjima.
+
+\textbf{Tip stranice značajno utječe na izbor optimalne kombinacije.} Analiza pokazuje da ne postoji univerzalno najbolje rješenje - optimalni izbor ovisi o specifičnostima aplikacije i prirodi sadržaja.
+
+Ova opažanja pružaju praktične smjernice za arhitekturalne odluke i omogućavaju razvojnim timovima da donesu informirane izbore na temelju empirijskih dokaza umjesto samo teorijskih razmatranja.
