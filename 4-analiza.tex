@@ -1,6 +1,6 @@
 \section{Analiza rezultata}
 
-U ovom poglavlju slijedi detaljna analiza rezultata testiranja radnih značajki tri programska okvira (Next.js, Nuxt.js i SvelteKit) uz četiri strategije iscrtavanja (SSG, SSR, CSR i ISR) na 3 različita tipa stranica. Analiza se temelji na ocjenama  Web Vitals metrika dobivenih mjerenjem Lighthouse CLI alatom: First Contentful Paint (FCP), Largest Contentful Paint (LCP), Speed Index (SI), Time to Interactive (TTI), Total Blocking Time (TBT) i Cumulative Layout Shift (CLS).
+U ovom poglavlju slijedi detaljna analiza rezultata testiranja radnih značajki tri programska okvira (Next.js, Nuxt.js i SvelteKit) uz četiri strategije iscrtavanja (SSG, SSR, CSR i ISR) na 3 različita tipa stranica. Analiza se temelji na ocjenama  Web Vitals metrika dobivenih mjerenjem Lighthouse CLI alatom: First Contentful Paint (FCP), Largest Contentful Paint (LCP), Speed Index (SI), Time to Interactive (TTI), Total Blocking Time (TBT) i Cumulative Layout Shift (CLS) te dodatnih metrika: vremena izgradnje aplikacije, veličine JS paketa i vremena izvršavanja skripti.
 
 \subsection{Analiza ocjena radnih značajki programskih okvira}
 
@@ -73,21 +73,26 @@ Dodatne metrike pružaju uvid u razvojne aspekte performansi koji nisu obuhvaće
 \textbf{Vrijeme izvršavanja skripti (Scripting time)} direktno utječe na interaktivnost stranice. SvelteKit konzistentno pokazuje najkraća vremena izvršavanja, što ga čini najefikasnijim u pogledu klijentske obrade (slika \ref{fig:average_scripting_performance_times}). Next.js i Nuxt.js imaju značajno duža vremena izvršavanja, posebno pri korištenju CSR strategije, gdje Nuxt.js bilježi najduža vremena. Činjenica da CSR strategija ima najduže vrijeme izvršavanja skripti je očekivana budući da programski okvir mora ispuniti cijeli html dokument koji je u trenutku učitavanja stranice prazan, dohvatiti vanjske podatke i iscrtati dokument. Jednostavno rečeno kod CSR strategije JS kod ima više posla kojeg treba obaviti u odnosu na druge strategije gdje se jedan dio tog posla događa na poslužitelju. Što se tiče samih programskih okvira, SvelteKit je brži od konkurencije jer ne koristi virtualni DOM, već generira optimizirani JavaScript kod koji direktno manipulira DOM-om, čime se smanjuje složenost i povećava efikasnost izvršavanja skripti \cite{svelte2019reactivity}.
 
 
-\textbf{Odnos između veličine paketa i vremena izgradnje} otkriva kompromise u optimizaciji. Strategije koje rezultiraju manjim paketima često zahtijevaju duža vremena izgradnje zbog dodatnih optimizacija, što predstavlja klasični trade-off između razvoja i produkcijskih performansi.
+\textbf{Odnos između veličine paketa i vremena izgradnje} pokazuje snažnu pozitivnu korelaciju (r=0.868), što ukazuje na to da veći paketi općenito zahtijevaju duža vremena izgradnje (slika \ref{fig:bundle_size_vs_build_time_correlation}). Analiza otkriva jasnu hijerarhiju programskih okvira: SvelteKit ostvaruje najmanju veličinu paketa (58-58.9 kB) s najkraćim vremenom izgradnje (8.7-14 sekundi), Nuxt.js zauzima srednju poziciju (118 kB, 20-22 sekunde), dok Next.js, usprkos najvećim paketima (135-154 kB) i najduljim vremenima izgradnje (22.7-42.3 sekunde), ostvaruje najviše performanse.
+Zaključak koji se nameće je da rastom veličine JS paketa raste i vrijeme izgradenje, no i da je za postizanje većih performansi potrebno prihvatiti ovaj kompromis. Next.js ide u tom smjeru, dok SvelteKit i Nuxt.js nude brža vremena izgradnje s manjim paketima, ali s nešto nižim performansama.
 
-\textbf{Matrica efikasnosti} kombinira runtime performanse s razvojnim metrikama, pružajući holistički pogled na efikasnost. Next.js s ISR strategijom pokazuje najbolju ukupnu efikasnost, balansirajući performanse s praktičnošću razvoja.
-
+\textbf{Odnos između vremena skriptiranja i veličine JS paketa} prikazan je na grafu (slika \ref{fig:performance_vs_bundle_size_tradeoff}). Ovaj graf pokazuje da veći JS paketi ne nužno rezultiraju dužim vremenima izvršavanja skripti, što Next.js lijepo demonstrira te sugerira da optimizacija koda može kompenzirati povećanje veličine paketa. SvelteKit uvjerljivo nadmašuje konkurenciju kako u veličini JS paketa, tako i u vrlo niskom vremenu skriptiranja. Nuxt ovdje malo zaostaje, no i dalje je unutar vrlo prihvatljivog vremena skriptiranja.
 \subsection{Pouzdanost izmjerenih podataka}
 
-Analiza pouzdanosti podataka temelji se na statističkim pokazateljima varijabilnosti i konzistentnosti mjerenja.
+Analiza pouzdanosti podataka temelji se na statističkim pokazateljima varijabilnosti i konzistentnosti mjerenja te je u skladu s nalazima iz izvještaja "Lighthouse Metric Variability and Accuracy" (javno dostupan Google Doc \cite{lh_variability2025}) koji identificira mrežu, hardver, poslužitelj i nondeterminističko ponašanje preglednika kao glavne izvore varijabilnosti.
 
-\textbf{Standardne devijacije} kreću se od ±5,9\% do ±17,3\%, što ukazuje na umjerenu varijabilnost rezultata. Manje varijacije kod Next.js (±5,9\% - ±14,8\%) sugeriraju stabilniju i predvidljiviju platformu, dok veće varijacije kod drugih okvira mogu odražavati manje zrele optimizacije ili veću osjetljivost na testne uvjete.
+\textbf{Opažene varijacije.} U našem skupu podataka standardne devijacije kreću se od ±5,9\% do ±17,3\%, što ukazuje na umjerenu do povišenu varijabilnost ovisno o kombinaciji okvira/strategije. Manje varijacije kod Next.js (±5,9\% - ±14,8\%) potvrđuju njegovu veću stabilnost, dok veće varijacije kod CSR kombinacija i nekih Nuxt/SvelteKit scenarija odražavaju osjetljivost na implementacijske razlike i testne uvjete (kao što je mrežno kašnjenje ili različito ponašanje klijentskog JS koda).
 
-\textbf{Konzistentnost preko tipova stranica} pokazuje da svi okviri održavaju relativno stabilne performanse, što ukazuje na robusnost testnih rezultata. Sistematski obrasci (npr., opadanje performansi od statičnog prema dinamičkom sadržaju) potvrđuju valjanost izmjerenih trendova.
+Nalazi u spomenutom dokumentu potvrđuju da pojedine metrike (npr. LCP, TTI) mogu imati znatnu varijabilnost između pokretanja te da za robustnu procjenu treba koristiti više ponavljanja i kontrolirano okruženje.
 
-\textbf{Reproducibilnost rezultata} kroz različite kombinacije okvira i strategija pokazuje logičke obrasce koji su u skladu s teoretskim očekivanjima. Na primjer, CSR strategija dosljedno pokazuje bolje FCP rezultate, dok SSR pokazuje prednosti kod dinamičkih stranica.
+\textbf{Preporučeni protokol mjerenja.}
+Googleov dokument \cite{lh_variability2025} preporučuje sljedeće korake za pouzdano mjerenje performansi:
+- Izvršiti najmanje 3 pokreta po konfiguraciji; za metrike ili konfiguracije s visokom varijabilnošću (LCP, anomalije u CSR) preporučljivo je 5 ili više pokreta.
+- Pri izvještavanju prikazati: broj pokreta (n), srednju vrijednost (mean), medijan, standardnu devijaciju, te minimalnu i maksimalnu vrijednost.
+- Koristiti dosljedno, kontrolirano okruženje: isto hardversko okruženje, isključen/umjeren promet u pozadini, stabilna mrežna veza (po mogućnosti žičana ili lokalno simulirana), i fiksno throttling podešenje pri korištenju Lighthouse/DevTools.
 
-Ukupno, podaci pokazuju dovoljnu pouzdanost za izvođenje valjanih zaključaka, iako varijabilnost sugerira potrebu za kontinuiranim testiranjem u različitim uvjetima za potpunu validaciju rezultata.
+Testiranja na kojima se temelji ovaj rad  provedena su u skladu s navedenim Googleovim smjernicama. Za svaki testni scenarij urađeno je 10 mjerenja, na vrlo stabilnoj internetskoj vezi, uz fiksno throttling podešenje. Uz standardnu devijaciju, u izvještajima su zabilježene i minimalne i maksimalne vrijednosti podataka \footnote{Svi izvještaji i izmjereni podaci kao i testna Node.js skripta lighthouse-reporter dostupni su na repozitoriju : \url{https://github.com/AlphaActual/lighthouse-reporter}}.
+
 
 \subsection{Ključna opažanja}
 
