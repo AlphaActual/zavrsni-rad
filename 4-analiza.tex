@@ -100,16 +100,22 @@ Analiza rezultata otkriva nekoliko ključnih opažanja koja imaju praktičnu vri
 
 \textbf{Next.js se izdvaja kao najstabilniji i najbolji okvir} kroz sve testirane scenarije, s konzistentnim performansama i najmanjom varijabilnošću rezultata. Ova prednost posebno je izražena na statičnom sadržaju, ali se održava i kroz dinamičke scenarije.
 
-\textbf{Strategija iscrtavanja mora biti usklađena s prirodom sadržaja.} SSR strategija pokazuje najbolje rezultate za dinamički sadržaj, ISR za hibridne scenarije, a SSG za statični sadržaj. CSR strategija ima specifične prednosti za FCP i TBT metrike, ali pokazuje najveću nestabilnost s ekstremnim vrijednostima (40-100 bodova na blog post stranici).
+\textbf{Strategija iscrtavanja mora biti usklađena s prirodom sadržaja.} SSR strategija pokazuje najbolje rezultate za dinamički sadržaj, ISR za hibridne scenarije, a SSG za statični sadržaj. CSR strategija ima specifične prednosti za FCP i TBT metrike, ali pokazuje najveću nestabilnost i varijabilnost.
 
 \textbf{Kvantitativno pogoršanje performansi prema složenosti sadržaja} je sistematsko i mjerljivo - ukupne performanse opadaju za 0,68 postotnih bodova od statične na blog stranicu, a dodatnih 0,91 postotnih bodova na blog post stranicu. Ovo predstavlja ukupno smanjenje od 1,59 postotnih bodova (1,7\% relativno smanjenje) između najjednostavnije i najsloženije stranice.
 
 \textbf{LCP metrika predstavlja najveći izazov} za sve testirane kombinacije, što ukazuje na potrebu za specifičnim optimizacijama. Ni jedna kombinacija nije dosljedno postizala izvrsne LCP rezultate, što sugerira da je ova metrika područje za buduće poboljšanje.
 
-\textbf{Postoji jasni trade-off između runtime performansi i razvojne složenosti.} Strategije koje postižu najbolje runtime performanse (SSG, ISR) često zahtijevaju duža vremena izgradnje i složeniju konfiguraciju.
+\textbf{Postoji jasni kompromis između performansi i razvojne složenosti.} Strategije koje postižu najbolje ocjene (SSG, ISR) često zahtijevaju duža vremena izgradnje i složeniju konfiguraciju.
 
 \textbf{Konzistentnost performansi jednako je važna kao i vrhunski rezultati.} Next.js pokazuje da stabilnost i predvidljivost mogu biti jednako vrijedne kao i maksimalne performanse, posebno u produkcijskim okruženjima.
 
 \textbf{Tip stranice značajno utječe na izbor optimalne kombinacije.} Analiza pokazuje da ne postoji univerzalno najbolje rješenje - optimalni izbor ovisi o specifičnostima aplikacije i prirodi sadržaja.
+
+\textbf{Dodatne metrike otkrivaju važne razvojne kompromise.} SvelteKit se ističe dramatičnom prednošću u veličini JS paketa (58kB vs 118-154kB konkurenata) i najkraćim vremenima izgradnje, što ga čini idealnim za projekte gdje su brzina razvoja i mala veličina paketa prioritet. Snažna korelacija između veličine paketa i vremena izgradnje (r=0.868) potvrđuje da performanse dolaze uz cijenu razvojne složenosti.
+
+\textbf{Identificirani su specifični ograničavajući faktori.} Next.js CSR kombinacija na blog post stranici pokazuje anomalno ponašanje (CLS = 0.3), što ukazuje na važnost temeljitog testiranja specifičnih kombinacija i prilagodbu arhitekture koda određenoj strategiji iscrtavanja. Vanjski faktori poput brzine Lorem Picsum servisa mogu ograničiti LCP performanse neovisno o arhitekturnim odlukama.
+
+\textbf{Razlika između teorijskih i praktičnih performansi je značajna.} Dok Next.js teorijski ima najveće JS pakete i najdulja vremena izgradnje, u praksi postiže najbolje ukupne performanse, što naglašava važnost empirijskog testiranja nad spekulativnim optimizacijama.
 
 Ova opažanja pružaju praktične smjernice za arhitekturalne odluke i omogućavaju razvojnim timovima da donesu informirane izbore na temelju empirijskih dokaza umjesto samo teorijskih razmatranja.
