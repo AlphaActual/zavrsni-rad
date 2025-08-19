@@ -1,6 +1,6 @@
 \section{Strategije iscrtavanja}
 
-U današnjoj industriji razvoja web aplikacija, više nego ikada prije, izražena je težnja za postizanjem sve većih performansi, skalabilnosti i boljeg korisničkog iskustva. Ta potreba potaknula je istraživanje i razvoj novih rješenja kao odgovor na pitanje kako najoptimalnije i najbrže dostaviti web sadržaj korisniku. Važni čimbenici u odgovoru na ovo pitanje su upravo odabir odgovarajuće strategije iscrtavanja web aplikacije s obzirom na vrstu sadržaja, te programski okvir na kojem se temelji aplikacija. Web aplikacije uvelike su evoluirale od starog pristupa serviranja statičnih stranica do današnjih vrlo interaktivnih dinamičnih aplikacija koje zahtijevaju sofisticirane pristupe dostavljanja i prikazivanja sadržaja krajnjem korisniku \cite{moore2024rendering}. Tradicionalne metode iscrtavanja poput iscrtavanja na serveru (SSR) i generiranja statičnih stranica (SSG) već duže vrijeme čine temelj i osnovni standard u razvoju web aplikacija. Povećanje kompleksnosti aplikacija i potreba za sve višim performansama rezultirali su i nastankom novih hibridnih metoda iscrtavanja poput inkrementalne statičke generacije (ISR).
+U današnjoj industriji razvoja web aplikacija, više nego ikada prije, izražena je težnja za postizanjem sve većih performansi, skalabilnosti i boljeg korisničkog iskustva. Ta potreba potaknula je istraživanje i razvoj novih rješenja kao odgovor na pitanje kako najoptimalnije i najbrže dostaviti web sadržaj korisniku. Važni čimbenici u odgovoru na ovo pitanje su upravo odabir odgovarajuće strategije iscrtavanja web aplikacije s obzirom na vrstu sadržaja, te programski okvir na kojem se temelji aplikacija. Web aplikacije uvelike su evoluirale od starog pristupa serviranja statičnih stranica do današnjih vrlo interaktivnih dinamičnih aplikacija koje zahtijevaju sofisticirane pristupe dostavljanja i prikazivanja sadržaja krajnjem korisniku \cite{moore2024rendering}. Tradicionalne metode iscrtavanja poput iscrtavanja na serveru (SSR) i generiranja statičnih stranica (SSG) već duže vrijeme čine temelj i osnovni standard u razvoju web aplikacija. Povećanje kompleksnosti aplikacija i potreba za sve višim performansama rezultirali su i nastankom novih hibridnih metoda iscrtavanja poput inkrementalne statičke regeneracije (ISR).
 
 \bigskip
 
@@ -74,6 +74,14 @@ S obzirom na navedene prednosti i nedostatke ova strategija iscrtavanja najbolja
     \item progresivne web aplikacije
     \item potreba za smanjenjem opterećenja poslužitelja
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{slike/uvod/CSR.jpg}
+    \caption{Dijagram iscrtavanja na strani klijenta (CSR)}
+    \label{fig:csr-diagram}
+\end{figure}
+
 \vfill
 
 \subsection{Iscrtavanje na strani poslužitelja (SSR)}
@@ -122,6 +130,13 @@ S obzirom na navedene prednosti i nedostatke ova strategija iscrtavanja najbolja
     \item dobar SEO
 \end{itemize}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{slike/uvod/SSR.jpg}
+    \caption{Dijagram iscrtavanja na strani poslužitelja (SSR)}
+    \label{fig:ssr-diagram}
+\end{figure}
+
 \subsection{Generiranje statičkih stranica (SSG)}
 
 Kod ove strategije iscrtavanja stranice se unaprijed iscrtavaju na poslužitelju prilikom izgradnje aplikacije, te se zatim poslužuju klijentu na zahtjev, bez potrebe za ponovnim iscrtavanjem pri svakom zahtjevu kao kod SSR-a. Ovakve stranice se mogu i spremiti u priručnu memoriju (engl. cache) koristeći CDN radi brže distribucije korisnicima \cite{nextjsssg}, \cite{sanityssg}.
@@ -156,7 +171,14 @@ Generalno pravilo je postaviti pitanje: može li se stranica iscrtati unaprijed,
 
 Postoji mogućnost kombiniranja SSG-a i CSR-a gdje se stranica servira sa prethodno iscrtanim statičnim dijelom koji se ne mijenja, a po učitavanju JavaScripta na klijentu se ispunjavaju dinamični dijelovi stranice svježim podacima. Ovo je alternativa korištenju SSR strategije, koja također ima svoje prednosti i nedostatke \cite{nextjsssg}.
 
-\subsection{Inkrementalna statička generacija (ISR)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{slike/uvod/SSG.jpg}
+    \caption{Dijagram generiranja statičkih stranica (SSG)}
+    \label{fig:ssg-diagram}
+\end{figure}
+
+\subsection{Inkrementalna statička regeneracija (ISR)}
 
 Ovu strategiju iscrtavanja neki nazivaju i hibridnim web razvojem jer kombinira generiranje statičnih stranica (SSG) sa iscrtavanjem na strani poslužitelja (SSR).
 
@@ -198,10 +220,9 @@ Npr. Next.js generira statične stranice za dinamične rute prilikom vremena izg
     \item složenije debugiranje – teže razumjevanje problema koji nastanu zbog spremanja u priručnu memoriju
 \end{itemize}
 
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{slike/uvod/pregled-strategija-iscrtavanja.jpg}
-    \caption{Pregled strategija iscrtavanja u Next.js programskom okviru \cite{dumais2021nextjs}}
-    \label{fig:pregled-strategija-iscrtavanja}
+    \includegraphics[width=\textwidth]{slike/uvod/ISR.jpg}
+    \caption{Dijagram inkrementalne statičke regeneracije (ISR)}
+    \label{fig:isr-diagram}
 \end{figure}
