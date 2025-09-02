@@ -19,6 +19,7 @@
 \usepackage{cite}
 \usepackage{url}       %za URL linkove u bibliografiji
 \usepackage{float}
+\usepackage{pdfpages}  %za uključivanje PDF stranica
 \usepackage{hyperref}  %za hiperlinkove - mora biti zadnji
 
 % Konfiguracija hyperref-a za boje i stil linkova
@@ -49,6 +50,10 @@
 \pagenumbering{gobble}
 \clearpage
 \newpage
+
+% Uključivanje PDF stranica
+\includepdf[pages=-]{Izjava_o_akademskoj_cestitosti.pdf}
+\includepdf[pages=-]{Izjava_o_koristenju_autorskog_djela.pdf}
 
 %Resetirat margine
 \restoregeometry
